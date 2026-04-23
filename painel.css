@@ -276,7 +276,7 @@ gap: 30px;
     gap: 20px;
 }
 .dados-pessoais {
-    display: grid;
+    display: none;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
 }
@@ -329,6 +329,33 @@ gap: 30px;
     cursor: pointer;
     transition: 500ms;
 }
+
+
+.assinaturas{
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
