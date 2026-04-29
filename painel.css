@@ -370,10 +370,24 @@ gap: 30px;
     font-weight: 500;
 }
 
+.background{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(200, 199, 199, 0.194);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+
+.pop-up{
 
 
 
-
+}
 
 
 
