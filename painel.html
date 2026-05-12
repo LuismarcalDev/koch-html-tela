@@ -8,13 +8,30 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="background">
-
-        <div class="pop-up">
-            
-
+    <div class="popup-backdrop" id="popupBackdrop" aria-hidden="true">
+        <div class="popup-modal" role="dialog" aria-modal="true" aria-labelledby="popupTitle" tabindex="-1">
+            <button type="button" class="popup-close" id="popupClose" aria-label="Fechar detalhes da assinatura">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="popup-hero">
+                <div class="popup-hero__img-wrap">
+                    <img src="foto.png" alt="Imagem da cesta assinada">
+                </div>
+                <div class="popup-hero__badge"><i class="fa-solid fa-circle-check"></i> Assinatura ativa</div>
+            </div>
+            <div class="popup-body">
+                <h2 id="popupTitle" class="popup-title">Cesta Suínos</h2>
+                <p class="popup-desc">Receba produtos selecionados todo mês com a qualidade Koch. Você pode alterar ou cancelar quando quiser.</p>
+                <div class="popup-price">
+                    <span class="popup-price__value">R$&nbsp;29,00</span>
+                    <span class="popup-price__period">/ mês</span>
+                </div>
+                <div class="popup-actions">
+                    <button type="button" class="popup-btn popup-btn--ghost" id="popupFecharInferior">Fechar</button>
+                    <button type="button" class="popup-btn popup-btn--danger">Desativar assinatura</button>
+                </div>
+            </div>
         </div>
-
     </div>
     <header class="topbar">
         <img src="logo.png" alt="Logo Koch">
@@ -54,11 +71,10 @@
                          <i class="fa-solid fa-user"></i>
                          <p>Tomaz Juliano </p>
                 </div>
-                <div class="abas-gerais">
-                        <p>Dados Pesoais </p>
-                        <p>Assinaturas </p>
-                        <p>Endereços</p>
-              
+                <div class="abas-gerais" role="tablist" aria-label="Seções do painel">
+                        <button type="button" class="aba-painel is-active" role="tab" aria-selected="true" data-secao="dados" id="tabDados">Dados pessoais</button>
+                        <button type="button" class="aba-painel" role="tab" aria-selected="false" data-secao="assinaturas" id="tabAssinaturas">Assinaturas</button>
+                        <button type="button" class="aba-painel" role="tab" aria-selected="false" data-secao="enderecos" id="tabEnderecos">Endereços</button>
                 </div>
               <button class="sair">
               <i class="fa-solid fa-arrow-left"></i>
@@ -68,54 +84,69 @@
             </div>
 
             <div class="painel-infos">
-                
-                    <h2>
-                        Assinaturas
-                    </h2>
 
-               
-                <div class="dados-pessoais">
+                <div class="painel-infos__views">
+
+                <div class="painel-secao painel-secao--dados is-active" id="secaoDados" role="tabpanel" aria-labelledby="tabDados" aria-hidden="false">
+                    <h2>Dados pessoais</h2>
+                    <p class="painel-secao__subtitle">Atualize nome, telefone e e-mail da sua conta.</p>
+                    <div class="dados-pessoais">
                         <div class="input-pessoal">
                             <label for="name">Seu Nome</label>
-                            <input type="text" placeholder="Tomaz Juliano">
+                            <input type="text" id="name" placeholder="Tomaz Juliano">
                         </div>
-
-                         <div class="input-pessoal">
-                            <label for="telefone">Seu Telefone </label>
-                            <input type="text" placeholder="(11) 9999-999 ">
+                        <div class="input-pessoal">
+                            <label for="telefone">Seu Telefone</label>
+                            <input type="text" id="telefone" placeholder="(11) 9999-999">
                         </div>
-
-                         <div class="input-pessoal">
+                        <div class="input-pessoal">
                             <label for="email">Seu Email</label>
-                            <input type="text" placeholder="tomazjuliano@gmail.com">
-                         </div>
-                         
-                         <div class="controller">
-                <button class="btn-save">
-                Salvar Dados
-            </button>
-        </div>
-
-            </div>
-            
-            <div class="assinaturas">
-                    <p>Confira suas Cestas Assinadas</p>
-                    <div class="grupo-assinaturas">
-                        <div class="assinatura">
-                            <img src="foto.png" alt="">
-                            <p>Cesta Suinos</p>
-                            <button>
-                                <i class="fa-solid fa-bowl-food"></i>
-                                Ativa
-                            </button>
+                            <input type="text" id="email" placeholder="tomazjuliano@gmail.com">
+                        </div>
+                        <div class="controller">
+                            <button type="button" class="btn-save">Salvar dados</button>
                         </div>
                     </div>
+                </div>
+
+                <div class="painel-secao painel-secao--assinaturas" id="secaoAssinaturas" role="tabpanel" aria-labelledby="tabAssinaturas" aria-hidden="true">
+                    <h2>Assinaturas</h2>
+                    <p class="painel-secao__subtitle">Confira e gerencie suas cestas.</p>
+                    <div class="assinaturas">
+                        <div class="grupo-assinaturas">
+                            <div class="assinatura" id="assinaturaCard" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="popupBackdrop" aria-label="Ver detalhes da Cesta Suínos">
+                                <div class="assinatura__media">
+                                    <img src="foto.png" alt="">
+                                </div>
+                                <div class="assinatura__info">
+                                    <p class="assinatura__title">Cesta Suínos</p>
+                                    <span class="assinatura__meta">Mensal · Koch</span>
+                                </div>
+                                <button type="button" class="assinatura__status">
+                                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                                    <span>Assinatura ativa</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn-buscar-assinaturas">
+                        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                        Buscar assinaturas
+                    </a>
+                </div>
+
+                <div class="painel-secao painel-secao--enderecos" id="secaoEnderecos" role="tabpanel" aria-labelledby="tabEnderecos" aria-hidden="true">
+                    <h2>Endereços</h2>
+                    <p class="painel-secao__subtitle">Cadastre e edite endereços para entrega.</p>
+                    <p class="painel-enderecos__vazio">Nenhum endereço cadastrado ainda.</p>
+                </div>
+
+                </div>
+
             </div>
-        
+
         </div>
     </main>
-
-
 
     <footer class="site-footer">
         <div class="site-footer__inner">
@@ -136,5 +167,84 @@
             <p class="site-footer__copy">© 2025 Grupo 2. Todos os direitos reservados.</p>
         </div>
     </footer>
+    <script>
+        (function () {
+            var backdrop = document.getElementById('popupBackdrop');
+            var card = document.getElementById('assinaturaCard');
+            var closeBtn = document.getElementById('popupClose');
+            var closeBottom = document.getElementById('popupFecharInferior');
+            var modal = backdrop && backdrop.querySelector('.popup-modal');
+
+            function openPopup() {
+                if (!backdrop) return;
+                backdrop.classList.add('is-open');
+                backdrop.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('popup-open');
+                if (modal) modal.focus();
+            }
+
+            function closePopup() {
+                if (!backdrop) return;
+                backdrop.classList.remove('is-open');
+                backdrop.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('popup-open');
+                if (card) card.focus();
+            }
+
+            if (card) {
+                card.addEventListener('click', function () {
+                    openPopup();
+                });
+                card.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openPopup();
+                    }
+                });
+            }
+            if (closeBtn) closeBtn.addEventListener('click', closePopup);
+            if (closeBottom) closeBottom.addEventListener('click', closePopup);
+
+            if (backdrop) {
+                backdrop.addEventListener('click', function (e) {
+                    if (e.target === backdrop) closePopup();
+                });
+            }
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && backdrop && backdrop.classList.contains('is-open')) closePopup();
+            });
+
+            /* Abas do painel (menu lateral) */
+            var secoes = {
+                dados: document.getElementById('secaoDados'),
+                assinaturas: document.getElementById('secaoAssinaturas'),
+                enderecos: document.getElementById('secaoEnderecos')
+            };
+            var abas = document.querySelectorAll('.aba-painel');
+
+            function mostrarSecao(nome) {
+                if (!secoes[nome]) return;
+                Object.keys(secoes).forEach(function (key) {
+                    var el = secoes[key];
+                    if (!el) return;
+                    var ativo = key === nome;
+                    el.classList.toggle('is-active', ativo);
+                    el.setAttribute('aria-hidden', ativo ? 'false' : 'true');
+                });
+                abas.forEach(function (btn) {
+                    var ativo = btn.getAttribute('data-secao') === nome;
+                    btn.classList.toggle('is-active', ativo);
+                    btn.setAttribute('aria-selected', ativo ? 'true' : 'false');
+                });
+            }
+
+            abas.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    mostrarSecao(btn.getAttribute('data-secao'));
+                });
+            });
+        })();
+    </script>
 </body>
 </html>
